@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema version="1.0" targetNamespace="http://ws.ati.nuevatel.com/" xmlns:tns="http://ws.ati.nuevatel.com/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <xs:element name="OperationException" type="tns:OperationException"/>
+
+  <xs:element name="findCellId" type="tns:findCellId"/>
+
+  <xs:element name="findCellIdResponse" type="tns:findCellIdResponse"/>
+
+  <xs:element name="response" nillable="true" type="xs:anyType"/>
+
+  <xs:complexType name="findCellId">
+    <xs:sequence>
+      <xs:element name="name" type="xs:string" minOccurs="0"/>
+      <xs:element name="type" type="xs:byte" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="findCellIdResponse">
+    <xs:sequence>
+      <xs:element name="return" type="tns:atiResponse" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="atiResponse">
+    <xs:complexContent>
+      <xs:extension base="tns:response">
+        <xs:sequence>
+          <xs:element name="name" type="xs:string" minOccurs="0"/>
+          <xs:element name="type" type="xs:byte" minOccurs="0"/>
+          <xs:element name="cellId" type="xs:string" minOccurs="0"/>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="response">
+    <xs:sequence>
+      <xs:element name="result" type="xs:string" minOccurs="0"/>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="OperationException">
+    <xs:sequence>
+      <xs:element name="message" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+

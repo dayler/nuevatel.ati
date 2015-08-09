@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <artifactId>ati</artifactId>
+        <groupId>com.nuevatel.ati</groupId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+    <artifactId>ati-core</artifactId>
+    <name>Core</name>
+
+    <build>
+        <plugins>
+            <!-- Add third party libraries -->
+            <!--
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>2.5.2</version>
+                <executions>
+                    <execution>
+                        <id>hack-binary-cf.common</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/lib/common-1.0.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>com.nuevatel.cf</groupId>
+                            <artifactId>cf.common</artifactId>
+                            <version>1.0</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>hack-binary-cf.appconn</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${project.basedir}/lib/appconn-client-1.0.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>com.nuevatel.cf</groupId>
+                            <artifactId>cf.appconn</artifactId>
+                            <version>1.0</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin> -->
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.nuevatel.cf</groupId>
+            <artifactId>cf.common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nuevatel.base</groupId>
+            <artifactId>appconn-core</artifactId>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+        </dependency>
+        <!-- -->
+        <dependency>
+            <groupId>com.nuevatel</groupId>
+            <artifactId>common-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.nuevatel</groupId>
+            <artifactId>common-wsi</artifactId>
+        </dependency>
+    </dependencies>
+</project>
