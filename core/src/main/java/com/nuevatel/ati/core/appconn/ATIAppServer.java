@@ -5,10 +5,11 @@ import com.nuevatel.base.appconn.Conn;
 import com.nuevatel.base.appconn.Message;
 import com.nuevatel.base.appconn.TaskSet;
 
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Properties;
+import java.util.Set;
 
 /**
  * Extension of {@link AppServer}, implements <code>dispatch(msg)</code> method. Dispatch messages without specifying
@@ -19,12 +20,9 @@ public class ATIAppServer extends AppServer {
     /**
      * List for ids of connected remote clients.
      */
-    private List<Integer>remoteIds = Collections.synchronizedList(new ArrayList<>());
+    private Set<Integer>remoteIds = Collections.synchronizedSet(new HashSet<>());
 
-    /**
-     * Point to next remote id.
-     */
-    private int itIndex = -1;
+    private Iterator<Integer>iterator = null;
 
     /**
      *
@@ -59,6 +57,7 @@ public class ATIAppServer extends AppServer {
         }
 
         remoteIds.remove(conn.getRemoteId());
+        iterator = null;
         super.remove(conn);
     }
 
@@ -75,11 +74,14 @@ public class ATIAppServer extends AppServer {
             return null;
         }
 
-        if (itIndex >= remoteIds.size()) {
-            itIndex = 0;
+        // Check if iterator has next elements. collection does not change recursively, so this action is valid.
+        if (iterator == null || !iterator.hasNext())
+        {
+            iterator = remoteIds.iterator();
         }
+
         // dispatch message
-        return dispatch(remoteIds.get(itIndex++), msg);
+        return dispatch(iterator.next(), msg);
     }
 
     /**
